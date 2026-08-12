@@ -1,100 +1,132 @@
-# Project Openmind
+# Openmind
 
 > **Open-source systems project for turning a real problem into a coherent, useful, and technically credible solution.**
 
-Project Openmind is the **engineering layer of my public portfolio**.
+Openmind is the **engineering layer of my public portfolio** and the single open-source project I am building publicly.
 
-It is where I consolidate and demonstrate genuine technical capability: architecture, implementation, APIs, security, data, AI, automation, testing, documentation, deployment, and engineering judgment—only where those capabilities actually belong to the project.
+It is where deeper technical capability is demonstrated through one coherent project: architecture, implementation, APIs, security, data, AI, automation, testing, documentation, deployment, and engineering judgment — only where those capabilities belong to the actual system.
 
-The project is intentionally named after the product/project itself. **“Open source” describes how the project is developed and shared; it does not need to be the repository name.**
+**Open source is the development model. Openmind is the project.**
 
-## Why Openmind exists
+## The problem
 
-Strong engineering starts with a clear problem.
+Modern knowledge work is fragmented across documents, applications, APIs, workflows, and AI tools. Openmind explores how a system can connect **context, information, automation, and intelligent capabilities** without turning into an unmaintainable collection of integrations.
 
-Openmind follows:
+The project follows:
 
-**Problem → context → requirements → architecture → implementation → testing → validation → iteration**
+**Problem → Context → Requirements → Architecture → Implementation → Testing → Validation → Iteration**
 
-The objective is not to collect technologies. It is to build something coherent and useful while making the engineering decisions understandable.
+The product definition will become more specific as the first implementation increments are validated. The repository will not pretend that an unvalidated idea is already a finished product.
 
-## What this repository demonstrates
+## What is being built
 
-Depending on the implementation stage, Openmind may demonstrate:
+Openmind is organized around a small set of capability areas:
 
-- System architecture and component boundaries
-- API design and integration
+- **Context & knowledge** — structured information, retrieval, and usable context
+- **AI integration** — model integration and AI-assisted workflows
+- **Automation** — repeatable workflows and system integrations
+- **Application & API layer** — interfaces through which capabilities are used
+- **Data & state** — persistence, validation, and auditability
+- **Security** — authentication, authorization, secrets, and safe integration patterns
+- **Engineering operations** — testing, observability, containerization, and deployment
+
+These are the current engineering boundaries, not a claim that every capability is implemented today.
+
+## Proof of work
+
+Openmind is being developed from a substantial historical engineering corpus rather than from portfolio templates.
+
+The source material already contains real work involving:
+
+- TypeScript / Next.js application architecture
 - Authentication and authorization
-- Security fundamentals
-- Data modelling and persistence
-- AI / intelligent-system integration
-- Workflow automation
-- Testing and validation
-- Containerization and deployment
-- Observability and operational concerns
-- Technical documentation
-- Engineering trade-offs and decision records
+- Prisma / database modelling
+- API and integration patterns
+- Encryption and security controls
+- AI model abstraction and retrieval patterns
+- Workflow orchestration
+- Docker deployment
+- Automated tests
+- Technical architecture and deployment documentation
 
-The list is a capability map, **not a claim that every item is already implemented**.
+Those assets are being **audited and selectively consolidated**. Existing code is not copied merely to increase repository size; it must solve a real Openmind requirement and remain maintainable in the resulting system.
 
-## My role
+### Evidence rule
 
-Openmind is where my technical capability can be evaluated more deeply than through a profile summary.
+Every meaningful capability published here must eventually be traceable to:
 
-My positioning remains **Technical / Business Systems Analyst with technical fluency**, rather than a code-first software-engineer identity. That means the repository deliberately combines:
+**source code · tests · executable behaviour · architecture decision · reproducible setup · deployment evidence · documentation**
 
-**problem understanding + systems thinking + technical implementation + documentation + execution judgment**
-
-This reflects how I want to work with business stakeholders, product teams, operations teams, engineers, and technical leadership.
-
-## Engineering standard
-
-Every major claim should be traceable to the repository.
+## Engineering state model
 
 | State | Meaning |
 |---|---|
-| **Planned** | Intended but not implemented |
+| **Planned** | Intended, not implemented |
 | **Designed** | Architecture / approach defined |
 | **Implemented** | Working code exists |
 | **Tested** | Defined tests have been executed |
-| **Deployed** | Running in a real deployment environment |
+| **Deployed** | Running in a real environment |
 | **Validated** | Evidence supports the stated result |
 
 No invented users, revenue, production scale, adoption, security guarantees, or business impact.
 
-## Historical engineering evidence
+## Architecture direction
 
-I have a large historical project corpus. Openmind is the place to **consolidate the strongest reusable engineering evidence**, not to reproduce the old repository count.
+```text
+User / Workflow
+      ↓
+Application & API
+      ↓
+Domain / Capabilities
+      ↓
+Context + Knowledge + AI + Automation
+      ↓
+Data / Integrations / Infrastructure
+```
 
-Useful patterns, code, architecture decisions, experiments, and lessons may be carried forward when they strengthen this project and remain technically coherent.
+The key engineering question is **where a capability belongs, what it depends on, and how it can change without destabilizing the rest of the system**.
 
-## How to evaluate the project
+Architecture decisions will be documented rather than hidden inside implementation.
 
-**Recruiters / hiring managers** — look at the problem, scope, capabilities, and evidence of ownership.
+## Repository structure
 
-**Business / operations leaders** — look at the problem definition, usefulness, constraints, and practical value.
+```text
+.
+├── docs/          # Architecture, decisions, evidence, and project documentation
+├── src/           # Application source
+├── tests/         # Automated validation
+└── README.md      # Project entry point
+```
 
-**Engineers / architects** — inspect the architecture, implementation, interfaces, security, tests, deployment, and trade-offs.
+## Who should read what
 
-**Senior technical reviewers** — evaluate the decisions and evidence, not the size of the technology stack.
+**Recruiter / hiring manager** — start with the problem, current status, and proof-of-work sections.
+
+**Business / operations leader** — focus on usefulness, constraints, and system behaviour.
+
+**Engineer / architect** — inspect source, interfaces, security, tests, deployment, and trade-offs.
+
+**Senior technical reviewer** — evaluate the decisions and evidence, not the number of technologies used.
 
 ## Current status
 
-**Stage:** Engineering foundation / consolidation
+**Engineering foundation / consolidation — active.**
 
-The repository will evolve through meaningful increments. New capability is added when it improves the actual project—not simply to make the repository look larger.
+The repository is moving from historical evidence → coherent architecture → implementation → reproducible validation.
+
+New capability is added only when it improves the actual project.
 
 ## Portfolio role
 
-Openmind is one of four deliberately curated public assets:
+Openmind is one of four public assets:
 
 1. **Praful Jadhav** — professional identity
-2. **Research-Business_analysis** — business and technology analysis
+2. **Research-Business_analysis** — analysis and decision evidence
 3. **Project-Portfolio** — professional presentation and case studies
 4. **Project-Openmind** — open-source engineering and technical capability
 
-No separate repository named “open-source” is required or planned.
+There is **no separate repository named “open-source.”**
 
 ---
 
-**Principle:** build something real, explain why it exists, make the engineering inspectable, and let the evidence create the credibility.
+**Principle:** build something real, explain why it exists, make the engineering inspectable, and let evidence create the credibility.
