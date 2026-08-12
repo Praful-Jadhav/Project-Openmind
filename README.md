@@ -1,61 +1,134 @@
 # Openmind
 
-> **Open-source systems project for turning a real problem into a coherent, useful, and technically credible solution.**
+> **Open-source systems project for connecting context, information, automation, and intelligent capabilities through a deliberately small, inspectable architecture.**
 
 Openmind is the **engineering layer of my public portfolio** and the single open-source project I am building publicly.
 
-It is where deeper technical capability is demonstrated through one coherent project: architecture, implementation, APIs, security, data, AI, automation, testing, documentation, deployment, and engineering judgment — only where those capabilities belong to the actual system.
+The project is intentionally built from real historical engineering evidence, but the public repository only keeps work that can be explained, implemented, tested, and maintained as part of Openmind.
 
 **Open source is the development model. Openmind is the project.**
 
-## The problem
+## Why Openmind exists
 
-Modern knowledge work is fragmented across documents, applications, APIs, workflows, and AI tools. Openmind explores how a system can connect **context, information, automation, and intelligent capabilities** without turning into an unmaintainable collection of integrations.
+Modern knowledge work is fragmented across documents, applications, APIs, workflows, and AI tools. The engineering problem is not simply adding another AI feature or another integration. It is creating useful boundaries between **context, knowledge, external systems, automation, and intelligent capabilities** without producing an unmaintainable integration mesh.
 
-The project follows:
+Openmind explores that problem through incremental implementation.
 
-**Problem → Context → Requirements → Architecture → Implementation → Testing → Validation → Iteration**
+**Problem → requirements → boundaries → implementation → tests → evidence → iteration**
 
-The product definition will become more specific as the first implementation increments are validated. The repository will not pretend that an unvalidated idea is already a finished product.
+## Current implementation
 
-## What is being built
+The first implemented capability is a **provider-neutral connection registry**.
 
-Openmind is organized around a small set of capability areas:
+It establishes a small domain boundary for external connections before provider-specific integrations are introduced.
 
-- **Context & knowledge** — structured information, retrieval, and usable context
-- **AI integration** — model integration and AI-assisted workflows
-- **Automation** — repeatable workflows and system integrations
-- **Application & API layer** — interfaces through which capabilities are used
-- **Data & state** — persistence, validation, and auditability
-- **Security** — authentication, authorization, secrets, and safe integration patterns
-- **Engineering operations** — testing, observability, containerization, and deployment
+### What is implemented
 
-These are the current engineering boundaries, not a claim that every capability is implemented today.
+- Typed `Connection` domain model
+- Input validation for required identifiers
+- Capability normalization and de-duplication
+- Immutable connection records
+- Provider-based lookup
+- Capability-based lookup
+- Duplicate registration protection
+- Connection disable operation
+- Connection removal
+- Automated tests for core behaviour
+- Strict TypeScript configuration
+
+### Why this is the first increment
+
+The historical project corpus repeatedly showed the same architectural risk: external providers, authentication, APIs, AI models, automation, and business logic can become tightly coupled when they are introduced too early.
+
+Openmind therefore starts with a small boundary:
+
+```text
+Openmind domain
+      │
+      ▼
+Connection Registry
+      │
+      ▼
+Provider Adapter
+      │
+      ▼
+External System
+```
+
+The registry does not know how GitHub, Notion, an AI provider, or another service authenticates or communicates. Those concerns belong behind an adapter boundary.
+
+That keeps the core replaceable and makes future integrations easier to reason about.
 
 ## Proof of work
 
-Openmind is being developed from a substantial historical engineering corpus rather than from portfolio templates.
+The repository now contains inspectable implementation rather than only architecture documentation.
 
-The source material already contains real work involving:
+### Source
+
+- [`src/domain/connection.ts`](src/domain/connection.ts) — domain model and validation
+- [`src/core/connection-registry.ts`](src/core/connection-registry.ts) — registry behaviour
+
+### Tests
+
+- [`tests/connection-registry.test.ts`](tests/connection-registry.test.ts) — registration, duplicate protection, filtering, and lifecycle behaviour
+
+### Configuration
+
+- [`package.json`](package.json) — executable test/type-check commands
+- [`tsconfig.json`](tsconfig.json) — strict TypeScript settings
+
+### Local verification
+
+The current implementation has been compiled with TypeScript and exercised with a smoke test covering registration, provider/capability lookup, disable behaviour, and duplicate protection.
+
+The repository will treat CI as the canonical repeatable verification path as the implementation surface expands.
+
+## Engineering evidence from the historical corpus
+
+Openmind is not being invented from scratch for presentation. The historical project corpus contains real work covering:
 
 - TypeScript / Next.js application architecture
-- Authentication and authorization
+- Authentication and session management
+- Authorization and policy concepts
 - Prisma / database modelling
-- API and integration patterns
-- Encryption and security controls
+- API and integration boundaries
+- AES-256-GCM encryption and secret handling
+- Rate limiting and audit logging
 - AI model abstraction and retrieval patterns
 - Workflow orchestration
 - Docker deployment
-- Automated tests
-- Technical architecture and deployment documentation
+- CI and repository engineering practices
+- Architecture, module, delivery, and deployment documentation
 
-Those assets are being **audited and selectively consolidated**. Existing code is not copied merely to increase repository size; it must solve a real Openmind requirement and remain maintainable in the resulting system.
+Examples from the historical corpus are being used selectively. A capability enters Openmind only when it satisfies an actual project requirement.
 
-### Evidence rule
+## Architecture direction
 
-Every meaningful capability published here must eventually be traceable to:
+```text
+User / Workflow
+      │
+      ▼
+Application / API
+      │
+      ▼
+Domain capabilities
+      │
+ ┌────┼──────────────┐
+ ▼    ▼              ▼
+Context  AI       Automation
+ │       │              │
+ └───────┼──────────────┘
+         ▼
+Connection / Integration Boundary
+         │
+         ▼
+External Systems
+         │
+         ▼
+Data · Security · Observability
+```
 
-**source code · tests · executable behaviour · architecture decision · reproducible setup · deployment evidence · documentation**
+The architecture is intentionally evolutionary. A diagram is not evidence that a component exists; source code and tests determine implementation status.
 
 ## Engineering state model
 
@@ -68,64 +141,50 @@ Every meaningful capability published here must eventually be traceable to:
 | **Deployed** | Running in a real environment |
 | **Validated** | Evidence supports the stated result |
 
-No invented users, revenue, production scale, adoption, security guarantees, or business impact.
+The current connection registry is **Implemented** and **Tested locally**. It is not being described as deployed or production-validated.
 
-## Architecture direction
+## Roadmap
 
-```text
-User / Workflow
-      ↓
-Application & API
-      ↓
-Domain / Capabilities
-      ↓
-Context + Knowledge + AI + Automation
-      ↓
-Data / Integrations / Infrastructure
-```
+### Near term
 
-The key engineering question is **where a capability belongs, what it depends on, and how it can change without destabilizing the rest of the system**.
+1. Provider adapter interface
+2. Connection persistence boundary
+3. Credential / secret boundary
+4. Audit events for connection lifecycle
+5. CI-based type checking and tests
 
-Architecture decisions will be documented rather than hidden inside implementation.
+### Later, only if justified
 
-## Repository structure
+- API layer
+- External provider adapters
+- AI provider abstraction
+- Context and knowledge services
+- Workflow execution
+- Observability
+- Deployment
 
-```text
-.
-├── docs/          # Architecture, decisions, evidence, and project documentation
-├── src/           # Application source
-├── tests/         # Automated validation
-└── README.md      # Project entry point
-```
+The roadmap is deliberately conditional. Scope expands only when the preceding boundary is useful and validated.
 
-## Who should read what
+## Documentation
 
-**Recruiter / hiring manager** — start with the problem, current status, and proof-of-work sections.
+- [`docs/architecture.md`](docs/architecture.md) — system boundaries and architectural principles
+- [`docs/evidence.md`](docs/evidence.md) — evidence and maturity rules
 
-**Business / operations leader** — focus on usefulness, constraints, and system behaviour.
+## Audience
 
-**Engineer / architect** — inspect source, interfaces, security, tests, deployment, and trade-offs.
+**Recruiter / hiring manager:** see the problem, current implementation, and proof of work.
 
-**Senior technical reviewer** — evaluate the decisions and evidence, not the number of technologies used.
+**Business / operations leader:** understand why the boundary matters and what operational problem it can support.
 
-## Current status
+**Engineer / architect:** inspect the domain model, registry implementation, tests, architecture and trade-offs.
 
-**Engineering foundation / consolidation — active.**
+**Senior technical reviewer:** evaluate scope control, separation of concerns, evidence discipline, and implementation quality.
 
-The repository is moving from historical evidence → coherent architecture → implementation → reproducible validation.
+## Evidence discipline
 
-New capability is added only when it improves the actual project.
+No invented users, revenue, adoption, production scale, security guarantees, or business impact.
 
-## Portfolio role
-
-Openmind is one of four public assets:
-
-1. **Praful Jadhav** — professional identity
-2. **Research-Business_analysis** — analysis and decision evidence
-3. **Project-Portfolio** — professional presentation and case studies
-4. **Project-Openmind** — open-source engineering and technical capability
-
-There is **no separate repository named “open-source.”**
+Claims should remain traceable to **source code, tests, reproducible behaviour, architecture decisions, or deployment evidence**.
 
 ---
 
