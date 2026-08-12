@@ -1,0 +1,15 @@
+{
+  "name": "openmind",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A small, provider-neutral core for registering and managing external connections.",
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
