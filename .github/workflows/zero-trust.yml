@@ -1,0 +1,42 @@
+name: Zero-Trust Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: openmind-zero-trust-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install JavaScript dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test evidence gate
+        run: python -m unittest discover -s tests -p "test_openmind_evidence.py" -v
+      - name: Enforce packet for material changes
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: python scripts/verify_openmind_evidence.py
+      - name: Run registry tests
+        run: npm test
+      - name: Typecheck
+        run: npm run typecheck
